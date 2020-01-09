@@ -19,7 +19,12 @@
     Are all the changes reflected?
 */
 class MovieList(val genre: String) {
-    val movies = ArrayList<String>()
+    private val movies = ArrayList<String>()
+
+    fun addMovie(movie: String) {
+        movies.add(movie)
+    }
+
     fun print() {
         println("$genre Movie List")
         for (m in movies) {
@@ -30,15 +35,21 @@ class MovieList(val genre: String) {
 }
 
 class MovieGoer {
-    val movieList = HashMap<String, MovieList>()
-    fun addList(list: MovieList) {
-        movieList[list.genre] = list
+    private val movieList = HashMap<String, MovieList>()
+//    fun addList(list: MovieList) {
+//        movieList[list.genre] = list
+//    }
+    fun addGenre(genre: String) {
+        movieList[genre] = MovieList(genre)
     }
     fun movieListFor(genre: String): MovieList? {
         return movieList[genre]
     }
     fun addMovie(genre: String, movie: String) {
-        movieList[genre]?.movies?.add(movie)
+        if (!movieList.containsKey(genre)) {
+            addGenre(genre)
+        }
+        movieList[genre]?.addMovie(movie)
     }
 }
 
@@ -57,10 +68,10 @@ exists before trying to add
 fun main(args: Array<String>) {
     val jane = MovieGoer()
     val john = MovieGoer()
-    val actionList = MovieList("Action")
-
-    jane.addList(actionList)
-    john.addList(actionList)
+//    val actionList = MovieList("Action")
+//
+//    jane.addList(actionList)
+//    john.addList(actionList)
 
     jane.addMovie("Action", "Indiana Jones")
     jane.addMovie("Action", "Rambo")
