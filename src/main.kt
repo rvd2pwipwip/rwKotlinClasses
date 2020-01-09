@@ -55,9 +55,19 @@ exists before trying to add
 // Your Solution Here
 
 fun main(args: Array<String>) {
+    val jane = MovieGoer()
+    val john = MovieGoer()
+    val actionList = MovieList("Action")
 
+    jane.addList(actionList)
+    john.addList(actionList)
 
-    // Test your classes here
+    jane.addMovie("Action", "Indiana Jones")
+    jane.addMovie("Action", "Rambo")
+    john.addMovie("Action", "Terminator")
+
+    jane.movieListFor("Action")?.print()
+    john.movieListFor("Action")?.print()
 
 
 
