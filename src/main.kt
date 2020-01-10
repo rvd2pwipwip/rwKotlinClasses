@@ -98,7 +98,42 @@ fun main(args: Array<String>) {
     A user has a name, email, and a `ShoppingCart` (below).
  */
 
-    // Your Solution Here
+    class TShirt(val size: Int, val color: Int, val price: Double)
+    class Address(val number: String, val street: String, val city: String, val zip: String)
+    class ShoppingCart(var tshirts: List<TShirt>, var address: Address ) {
+        fun totalPrice(): Double {
+            var total: Double = 0.0
+            for (t in tshirts) {
+                total += t.price
+            }
+            return  total
+        }
+    }
+    class User(val name: String, val email: String, val cart: ShoppingCart)
 
+//    class TShirt(var size : Int, var color : Int, var price : Double) {
+//    }
+//    class Address(var number: String, var street : String, var city : String, var zip : String) {
+//    }
+//    class ShoppingCart(var tshirts : List<TShirt>, var address: Address) {
+//        fun totalPrice() : Double {
+//            var total : Double = 0.0
+//            for (tshirt in tshirts) {
+//                total += tshirt.price
+//            }
+//            return total
+//        }
+//    }
+//    class User(var name : String, var email : String, var shoppingCart : ShoppingCart) {
+//    }
+//
+    val tshirt1 = TShirt(16, 1, 10.99)
+    val tshirt2 = TShirt(18, 1, 12.99)
+    val address = Address("10", "Seaside", "City of Lights", "99747")
+    val cart = ShoppingCart(arrayListOf(tshirt1, tshirt2), address)
+    val user = User("Sam", "someemail@aol.com", cart )
+    println("Shopping Cart total ${cart.totalPrice()}")
+    println("Ship to ${user.name}, (${user.email})")
+    println("At: ${address.number} ${address.street}, ${address.city}, ${address.zip}")
 
 }
